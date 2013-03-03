@@ -1,0 +1,33 @@
+<html>
+	<head>
+	</head>
+	<body>
+		<button class="action">click me !</button>
+	</body>
+	<script type="text/javascript" src="CSRFixer.js"></script>
+
+	<!-- Your application javascripts -->
+	<!-- Imagine we are in a bank application. -->
+	<!-- When you click on the button it performs a (fake) money transfer -->
+
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script type="text/javascript">
+
+	$(".action").click(function(){
+
+		$.ajax({
+			type: "GET",
+			url: "http://localhost/CSRFixer/server_side/example.php",
+			data: {
+				user: "MyBoon", 
+				receiver: "Someone",
+				amount: 10000,
+				token: CSRFixerToken // <- this is the only thing you should add in all your ajax requests.
+			}
+		}).done(function(data) {
+			alert(data);
+		});
+	});
+
+	</script>
+</html>
