@@ -1,4 +1,5 @@
-var CSRFixerToken = null;
+var CSRFixerServiceLocation = "../server_side/CSRFixer/Service.php",
+    CSRFixerToken = null;
 
 function getRequestObject(){
 
@@ -20,16 +21,13 @@ function getRequestObject(){
     return o;
 }
 
-function request(adress, data, callback){
+function request(adress, callback){
 
     var o = getRequestObject();
     var async = (callback !== null);
 
-    if (data != null)
-    	adress += "?" + data; // todo array
     o.open("GET", adress, async);
     o.send();
-   
     
     if (async)
     {
@@ -46,7 +44,7 @@ function request(adress, data, callback){
 window.onload = function() { 
 
     function getToken() {
-        request("../server_side/CSRFixer/Service.php", null, function(d){
+        request(CSRFixerServiceLocation, function(d){
 			CSRFixerToken = d.token;
 		});
     }
