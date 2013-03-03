@@ -33,10 +33,11 @@ Installation
 ------------
 
 - Upload in your server the directory `CSRFixer` (located in `server_side` in this repository).
-- Install and configure CSRFixer in your client side application.  
+- [Install and configure CSRFixer in your client side application.][2]  
 
 How to use CSRFixer ?
 ---------------------
 
 
   [1]: https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)
+  [2]: https://github.com/MyBoon/CSRFixer/tree/master/client_side
