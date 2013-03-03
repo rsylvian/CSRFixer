@@ -38,7 +38,8 @@ Installation
 How to use CSRFixer ?
 ---------------------
 
-If you have correctly installed CSRFixer, you have access in *javascript* to a global variable called `CSRFixerToken`. The only thing to do is to send this variable when you make an ajax call or submit a form.  
+If you have correctly installed CSRFixer, you have access in *javascript* to a global variable called `CSRFixerToken`.  
+The only thing to do is to send this variable when you make an ajax call or submit a form.  
 For example with jquery you can do something like this :
 
 ```js
@@ -53,7 +54,7 @@ $.ajax({
 });
 ```
 
-On the server side :
+When you need to check the request on the server side :
 
 ```php
 require_once "CSRFixer/CSRFixer.php";
@@ -72,5 +73,9 @@ if (isset($_GET) && isset($_GET["token"]))
 }
 ```
 
+You can find a working example [here (client)][3] and [here (server)][4].  
+
   [1]: https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)
   [2]: https://github.com/MyBoon/CSRFixer/tree/master/client_side
+  [3]: https://github.com/MyBoon/CSRFixer/blob/master/client_side/example.html
+  [4]: https://github.com/MyBoon/CSRFixer/blob/master/server_side/example.php
