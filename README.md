@@ -32,12 +32,45 @@ With only one file in the client side and one directory in the server side your 
 Installation
 ------------
 
-- Upload in your server the directory `CSRFixer` (located in `server_side` in this repository).
+- Upload in your server the `CSRFixer` directory (located in `server_side` in this repository).
 - [Install and configure CSRFixer in your client side application.][2]  
 
 How to use CSRFixer ?
 ---------------------
 
+If you have correctly installed CSRFixer, you have access in *javascript* to a global variable called `CSRFixerToken`. The only thing to do is to send this variable when you make an ajax call or submit a form.  
+For example with jquery you can do something like this :
+
+```js
+$.ajax({
+	type: "GET",
+	url: "url.com",
+	data: {
+		data1: "foo", 
+		data2: "bar",
+		token: CSRFixerToken
+	}
+});
+```
+
+On the server side :
+
+```php
+require_once "CSRFixer/CSRFixer.php";
+
+if (isset($_GET) && isset($_GET["token"]))
+{
+	$token = $_GET["token"];
+	if (CSRFixer::isValid($token))
+	{
+		// Here we are in a secure context.
+	}
+	else
+	{
+		// Illegitimate request !
+	}
+}
+```
 
   [1]: https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)
   [2]: https://github.com/MyBoon/CSRFixer/tree/master/client_side
